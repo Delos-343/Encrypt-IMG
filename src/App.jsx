@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { HomePage } from "./pages";
-import { AddNews, EditNews } from "./components/newsapp";
+import { AddNews, EditNews } from "./components";
 
 function App() {
   return (

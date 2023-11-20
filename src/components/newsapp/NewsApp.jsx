@@ -45,8 +45,8 @@ const NewsApp = () => {
     <div className="flex justify-center mt-5">
       <div className="container bg-white rounded-t-lg shadow-lg">
         <div className="flex justify-between items-center px-4 py-2 bg-blue-500 text-white rounded-t-lg">
-          <h1 className="text-2xl font-bold">
-            News App
+          <h1 className="text-xl font-bold">
+            Fachry Dwi H &nbsp; | &nbsp; Raihan F
           </h1>
           <Link
             to="add"
