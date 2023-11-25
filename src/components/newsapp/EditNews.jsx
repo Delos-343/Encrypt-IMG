@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -25,7 +27,7 @@ const EditNews = () => {
   const updateNews = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`https://muhdaffawibi.com/news/${id}`, {
+      await axios.put(`process.env.REACT_API_MYSQL/${id}`, {
         author,
         title,
         caption,
@@ -39,7 +41,7 @@ const EditNews = () => {
   };
 
   const getNewsById = async () => {
-    const response = await axios.get(`https://muhdaffawibi.com/news/${id}`);
+    const response = await axios.get(`process.env.REACT_API_MYSQL/${id}`);
     setAuthor(response.data.author);
     setTitle(response.data.title);
     setCaption(response.data.caption);

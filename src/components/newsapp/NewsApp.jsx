@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -13,13 +15,13 @@ const NewsApp = () => {
   }, []);
 
   const getNews = async () => {
-    const response = await axios.get("https://muhdaffawibi.com/news");
+    const response = await axios.get(process.env.REACT_API_MYSQL);
     setNews(response.data);
   };
 
   const deleteNews = async (id) => {
     try {
-      await axios.delete(`https://muhdaffawibi.com/news/${id}`);
+      await axios.delete(`process.env.REACT_API_MYSQL/${id}`);
       getNews();
     } catch (error) {
       console.log(error);

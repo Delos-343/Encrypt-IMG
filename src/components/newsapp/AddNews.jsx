@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -19,7 +21,7 @@ const AddNews = () => {
   const saveNews = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://muhdaffawibi.com/news", {
+      await axios.post(process.env.REACT_API_MYSQL, {
         author,
         title,
         caption,
