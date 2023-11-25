@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import CryptoJS from 'crypto-js';
 
 const AddNews = () => {
 
@@ -15,8 +16,17 @@ const AddNews = () => {
   const [content, setContent] = useState("");
 
   const [image, setImage] = useState("");
+
+  const [selectedEncryption, setSelectedEncryption] = useState("");
   
   const navigate = useNavigate();
+
+  const handleEncryption = (data) => {
+    // Perform encryption based on the selected encryption algorithm
+    // Implement encryption logic using AES, DES, RC4 here
+    // Return encrypted data
+    return data;
+  };
 
   const saveNews = async (e) => {
     e.preventDefault();
@@ -32,6 +42,10 @@ const AddNews = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleEncryptionSelect = (e) => {
+    setSelectedEncryption(e.target.value);
   };
 
   return (
@@ -103,6 +117,27 @@ const AddNews = () => {
               onChange={(e) => setImage(e.target.value)}
               placeholder="Image"
             />
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Select Encryption
+            </label>
+            <select
+              value={selectedEncryption}
+              onChange={handleEncryptionSelect}
+              className="w-full p-2 border border-gray-300 rounded"
+            >
+              <option value="AES">
+                AES
+              </option>
+              <option value="DES">
+                DES
+              </option>
+              <option value="RC4">
+                RC4
+              </option>
+            </select>
           </div>
 
           <div className="flex justify-between">
