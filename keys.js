@@ -12,9 +12,9 @@ console.log('AES Encryption IV:', aesEncryptionIV);
 
 // (8 bytes = 64 bits)
 const desEncryptionIV = randomBytes(8).toString('hex');
-console.log('DES Encryption IV:', desEncryptionIV);
+console.log('DES Encryption Key:', desEncryptionIV);
 
 
 // (16 bytes = 128 bits)
 const rc4EncryptionIV = randomBytes(16).toString('hex');
-console.log('DES Encryption IV:', rc4EncryptionIV);
+console.log('RC4 Encryption Key:', rc4EncryptionIV);
