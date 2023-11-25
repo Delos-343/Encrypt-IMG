@@ -1,8 +1,9 @@
+/* eslint-disable no-undef */
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const { Sequelize, DataTypes } = require('sequelize');
-const cors = require('cors');
+import express from 'express';
+import bodyParser from 'body-parser';
+import { Sequelize, DataTypes } from 'sequelize';
+import cors from 'cors';
 
 // Create an instance of Express.js
 const app = express();
