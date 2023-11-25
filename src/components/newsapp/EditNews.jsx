@@ -27,7 +27,7 @@ const EditNews = () => {
   const updateNews = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`process.env.REACT_API_MYSQL/${id}`, {
+      await axios.put(`process.env.REACT_APP_API/${id}`, {
         author,
         title,
         caption,
@@ -41,7 +41,7 @@ const EditNews = () => {
   };
 
   const getNewsById = async () => {
-    const response = await axios.get(`process.env.REACT_API_MYSQL/${id}`);
+    const response = await axios.get(`process.env.REACT_APP_API/${id}`);
     setAuthor(response.data.author);
     setTitle(response.data.title);
     setCaption(response.data.caption);

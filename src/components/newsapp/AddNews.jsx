@@ -21,7 +21,7 @@ const AddNews = () => {
   const saveNews = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(process.env.REACT_API_MYSQL, {
+      await axios.post(process.env.REACT_APP_API, {
         author,
         title,
         caption,
