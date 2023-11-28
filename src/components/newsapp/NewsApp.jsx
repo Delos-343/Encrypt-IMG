@@ -1,12 +1,41 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import CryptoJS from 'crypto-js';
 
 const NewsApp = () => {
-
   const [news, setNews] = useState([]);
-
   const [currentPage, setCurrentPage] = useState(1);
+  
+  // To encrypt the news
+  const [encryptionMethod, setEncryptionMethod] = useState('aes'); // Default to AES
+
+  const encryptContent = (content) => {
+    const key = process.env.REACT_APP_AES_KEY; // Replace with a secure way to generate or obtain your key
+    const iv = CryptoJS.lib.WordArray.random(128 / 8); // Generate a random IV (Initialization Vector)
+    
+    let encryptedContent;
+    
+    switch (encryptionMethod) {
+      case 'aes':
+        encryptedContent = CryptoJS.AES.encrypt(content, key, { iv }).toString();
+        break;
+      case 'des':
+        // Use AES with a specific mode to simulate DES
+        encryptedContent = CryptoJS.AES.encrypt(content, key, { iv, mode: CryptoJS.mode.ECB }).toString();
+        break;
+      case 'rc4':
+        encryptedContent = CryptoJS.RC4.encrypt(content, key, { iv }).toString();
+        break;
+      default:
+        encryptedContent = content;
+    }
+    
+    return {
+      encryptedContent,
+      iv: iv.toString(CryptoJS.enc.Hex), // Convert IV to a hex string for storage
+    };
+  };
 
   useEffect(() => {
     getNews();
@@ -28,13 +57,9 @@ const NewsApp = () => {
 
   // Pagination
   const itemsPerPage = 5;
-
   const lastIndex = currentPage * itemsPerPage;
-
   const firstIndex = lastIndex - itemsPerPage;
-
   const currentNews = news.slice(firstIndex, lastIndex);
-
   const totalPages = Math.ceil(news.length / itemsPerPage);
 
   const changePage = (page) => {
@@ -45,9 +70,8 @@ const NewsApp = () => {
     <div className="flex justify-center mt-5">
       <div className="container bg-white rounded-t-lg shadow-lg">
         <div className="flex justify-between items-center px-4 py-2 bg-blue-500 text-white rounded-t-lg">
-          <h1 className="text-xl font-bold">
-            Fachry Dwi H &nbsp; | &nbsp; Raihan F
-          </h1>
+          <h1 className="text-xl font-bold">Fachry Dwi H &nbsp; | &nbsp; Raihan F</h1>
+
           <Link
             to="add"
             className="bg-green-500 hover:bg-green-600 text-white font-light py-2 px-4 rounded"
@@ -55,6 +79,7 @@ const NewsApp = () => {
             Add New
           </Link>
         </div>
+
         <div className="overflow-x-auto justify-center items-center">
           <table className="min-w-full">
             <thead>
@@ -100,7 +125,7 @@ const NewsApp = () => {
                   <td className="py-3 px-4 border-b">
                     {news.caption}
                   </td>
-                   <td className="py-3 px-4 border-b">
+                  <td className="py-3 px-4 border-b">
                     <div className="m-auto truncate overflow-hidden w-96 text-left">
                       {news.content}
                     </div>
