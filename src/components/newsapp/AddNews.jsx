@@ -32,7 +32,6 @@ const AddNews = () => {
       const encryptedTitle = encryptContent(title, encryptionType);
       const encryptedCaption = encryptContent(caption, encryptionType);
       const encryptedContent = encryptContent(content, encryptionType);
-      const encryptedImage = encryptContent(image, encryptionType);
 
       navigate("/");
     } catch (error) {
