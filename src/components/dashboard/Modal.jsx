@@ -4,7 +4,7 @@ import React from 'react';
 const Modal = () => {
   return (
     <div>
-        Hello, World.
+        Login or Logout
     </div>
   );
 };
