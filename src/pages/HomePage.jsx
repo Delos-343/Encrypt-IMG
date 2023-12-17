@@ -1,14 +1,26 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { NewsApp, Hero } from "../components";
 
 const HomePage = () => {
+
   const [activeTab, setActiveTab] = useState('dashboard');
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
+
+  useEffect(() => {
+    // Check for query parameter 'tab' in the URL
+    const params = new URLSearchParams(window.location.search);
+    const tabParam = params.get('tab');
+    
+    // If the 'tab' query parameter exists and is 'news', set the active tab to 'news'
+    if (tabParam === 'news') {
+      setActiveTab('news');
+    }
+  }, []);
 
   return (
     <>

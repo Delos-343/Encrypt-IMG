@@ -14,13 +14,13 @@ const NewsApp = () => {
   }, []);
 
   const getNews = async () => {
-    const response = await axios.get("https://muhdaffawibi.com/news");
+    const response = await axios.get(process.env.REACT_APP_API);
     setNews(response.data);
   };
 
   const deleteNews = async (id) => {
     try {
-      await axios.delete(`https://muhdaffawibi.com/news/${id}`);
+      await axios.delete(`${process.env.REACT_APP_API}/${id}`);
       getNews();
     } catch (error) {
       console.log(error);

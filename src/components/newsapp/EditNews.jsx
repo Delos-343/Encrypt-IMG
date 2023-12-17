@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react-hooks/exhaustive-deps */
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
@@ -5,6 +6,8 @@ import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 const EditNews = () => {
+
+  const navigate = useNavigate();
 
   const [author, setAuthor] = useState();
 
@@ -15,8 +18,6 @@ const EditNews = () => {
   const [content, setContent] = useState();
 
   const [image, setImage] = useState();
-
-  const navigate = useNavigate();
   
   const { id } = useParams();
 
@@ -27,21 +28,21 @@ const EditNews = () => {
   const updateNews = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`https://muhdaffawibi.com/news/${id}`, {
+      await axios.put(`${process.env.REACT_APP_API}/${id}`, {
         author,
         title,
         caption,
         content,
         image,
       });
-      navigate("/");
+      navigate("/?tab=news");
     } catch (error) {
       console.log(error);
     }
   };
 
   const getNewsById = async () => {
-    const response = await axios.get(`https://muhdaffawibi.com/news/${id}`);
+    const response = await axios.get(`${process.env.REACT_APP_API}/${id}`);
     setAuthor(response.data.author);
     setTitle(response.data.title);
     setCaption(response.data.caption);
