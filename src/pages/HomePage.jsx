@@ -1,5 +1,6 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
-import { NewsApp } from "../components";
+import { NewsApp, Modal } from "../components";
 
 const HomePage = () => {
   
@@ -11,7 +12,7 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="w-full py-10 justify-center items-middle font-thin tracking-wider text-center text-5xl text-black">
+      <div className="w-full pt-10 pb-20 justify-center items-middle font-thin tracking-wider text-center text-5xl text-black">
         ENCRYPT-IMG
       </div>
       <div className="flex justify-center items-center mb-5 tracking-widest">
@@ -34,10 +35,16 @@ const HomePage = () => {
           </li>
         </ul>
       </div>
-      {activeTab === 'news' && (
+      {activeTab === 'news' ? (
         <div className="flex justify-center">
           <NewsApp />
         </div>
+      ) : (
+        activeTab === 'dashboard' && (
+          <div className="flex justify-center">
+            <Modal />
+          </div>
+        )
       )}
     </>
   );
