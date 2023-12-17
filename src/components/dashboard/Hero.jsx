@@ -32,7 +32,7 @@ const Header = ({ translate }) => {
     >
       <h1 className="text-4xl font-semibold">
         Keamanan Informasi <br />{' '}
-        <span className="text-5xl lg:text-6xl  font-bold mt-1 leading-none">
+        <span className="text-5xl lg:text-6xl font-bold leading-none">
           Final Project
         </span>
       </h1>
