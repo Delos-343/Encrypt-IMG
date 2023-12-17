@@ -23,8 +23,7 @@ const NewsApp = () => {
         encryptedContent = CryptoJS.AES.encrypt(content, key, { iv }).toString();
         break;
       case 'des':
-        // Use AES with a specific mode to simulate DES
-        encryptedContent = CryptoJS.AES.encrypt(content, key, { iv, mode: CryptoJS.mode.ECB }).toString();
+        encryptedContent = CryptoJS.DES.encrypt(content, key, { iv, mode: CryptoJS.mode.ECB }).toString();
         break;
       case 'rc4':
         encryptedContent = CryptoJS.RC4.encrypt(content, key, { iv }).toString();
