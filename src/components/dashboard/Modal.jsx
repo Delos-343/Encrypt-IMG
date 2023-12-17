@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const Modal = () => {
-
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleModal = () => {
@@ -13,7 +12,7 @@ const Modal = () => {
   return (
     <>
       <button onClick={toggleModal} className="fixed bottom-8 right-8 bg-blue-500 text-gray-100 px-4 py-2 rounded">
-        {isOpen ? 'Login?' : 'Login'}
+        {isOpen ? 'Close Login' : 'Open Login'}
       </button>
       {isOpen && (
         <motion.div
@@ -23,16 +22,29 @@ const Modal = () => {
           transition={{ duration: 0.3 }}
           className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center"
         >
-          <div className="bg-white p-8 rounded shadow-md">
-            <h2 className="text-2xl font-semibold mb-4">
-              Modal Content
-            </h2>
-            <p>
-              This is a Framer Motion animated modal.
-            </p>
-            <button onClick={toggleModal} className="mt-8 bg-blue-500 text-white px-4 py-2 rounded">
-              Cancel
-            </button>
+          <div className="bg-white p-8 rounded shadow-md w-96">
+            <h2 className="text-2xl font-semibold mb-4 text-center">Login</h2>
+            <form className="flex flex-col gap-4">
+              <input
+                className="p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                type="text"
+                placeholder="Email"
+              />
+              <input
+                className="p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                type="password"
+                placeholder="Password"
+              />
+              <button
+                className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition-colors"
+                type="submit"
+              >
+                Login
+              </button>
+              <button onClick={toggleModal} className="bg-red-500 text-white px-4 py-2 rounded">
+                Cancel
+              </button>
+            </form>
           </div>
         </motion.div>
       )}
