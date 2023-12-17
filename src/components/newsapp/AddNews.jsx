@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -13,25 +15,19 @@ const AddNews = () => {
   const [content, setContent] = useState("");
 
   const [image, setImage] = useState("");
-
-  const [encryptionType, setEncryptionType] = useState("aes");
   
   const navigate = useNavigate();
 
   const saveNews = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://muhdaffawibi.com/news", {
+      await axios.post(process.env.REACT_APP_API, {
         author,
         title,
         caption,
         content,
         image,
       });
-
-      const encryptedTitle = encryptContent(title, encryptionType);
-      const encryptedCaption = encryptContent(caption, encryptionType);
-      const encryptedContent = encryptContent(content, encryptionType);
 
       navigate("/");
     } catch (error) {
@@ -109,10 +105,10 @@ const AddNews = () => {
               placeholder="Image"
             />
           </div>
-
+{/*
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
-              Parry This, MF'er
+              Parry This, MF&apos;er
             </label>
             <select
               className="w-full p-2 border border-gray-300 rounded text-gray-400 mb-5 active:text-black"
@@ -124,8 +120,7 @@ const AddNews = () => {
               <option value="rc4"> RC4 </option>
             </select>
           </div>
-
-
+  */}
           <div className="flex justify-between">
             <button
               type="submit"
