@@ -12,7 +12,7 @@ const Modal = () => {
   return (
     <>
       <button onClick={toggleModal} className="fixed bottom-8 right-8 bg-blue-500 text-gray-100 px-4 py-2 rounded">
-        {isOpen ? 'Close Login' : 'Open Login'}
+        {isOpen ? 'Cancel' : 'Login'}
       </button>
       {isOpen && (
         <motion.div

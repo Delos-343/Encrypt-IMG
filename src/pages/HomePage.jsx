@@ -4,7 +4,7 @@ import { NewsApp, Hero } from "../components";
 
 const HomePage = () => {
   
-  const [activeTab, setActiveTab] = useState('news');
+  const [activeTab, setActiveTab] = useState('dashboard');
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
