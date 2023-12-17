@@ -20,7 +20,7 @@ const Modal = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setIsLoggedIn(true);
-        navigate("/");
+        navigate("/add");
       } else {
         setIsLoggedIn(false);
       }
