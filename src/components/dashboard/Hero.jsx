@@ -1,11 +1,11 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useScroll, useTransform, motion } from 'framer-motion';
-import { data } from './data';
+import axios from 'axios';
 
 const ScrollCore = () => {
-    
   const { scrollYProgress } = useScroll();
 
   const rotate = useTransform(scrollYProgress, [0, 1], [20, 0]);
@@ -41,6 +41,21 @@ const Header = ({ translate }) => {
 };
 
 const Card = ({ rotate, scale, translate }) => {
+  const [contents, setContents] = useState([]);
+
+  useEffect(() => {
+    async function fetchImages() {
+      try {
+        const response = await axios.get(process.env.REACT_APP_API);
+        setContents(response.data);
+      } catch (error) {
+        console.error('Error fetching images:', error);
+      }
+    }
+
+    fetchImages();
+  }, []);
+
   return (
     <motion.div
       style={{
@@ -52,9 +67,9 @@ const Card = ({ rotate, scale, translate }) => {
       className="max-w-5xl -mt-12 mx-auto h-[30rem] md:h-[40rem] w-full border-4 border-[#6C6C6C] p-6 bg-[#222222] rounded-[30px] shadow-2xl"
     >
       <div className="bg-gray-100 h-full w-full rounded-2xl grid grid-cols-2 md:grid-cols-4 gap-4 overflow-hidden p-4">
-        {data.map((user, idx) => (
+        {contents.map((content, idx) => (
           <motion.div
-            key={`user-${idx}`}
+            key={`content-${idx}`}
             className="bg-white rounded-md cursor-pointer relative"
             style={{ translateY: translate }}
             whileHover={{
@@ -63,12 +78,16 @@ const Card = ({ rotate, scale, translate }) => {
             }}
           >
             <div className="absolute top-2 right-2 rounded-full text-xs font-bold bg-white px-2 py-1">
-              {user.badge}
+              {content.author}
             </div>
-            <img src={user.image} className="rounded-tr-md rounded-tl-md text-sm" />
+            <img
+              src={content.image}
+              alt={`User ${idx}`}
+              className="rounded-tr-md rounded-tl-md text-sm object-cover object-center w-full h-64"
+            />
             <div className="p-4">
-              <h1 className="font-semibold text-sm">{user.name}</h1>
-              <h2 className="text-gray-500 text-xs">{user.designation}</h2>
+              <h1 className="font-semibold text-sm">{content.title}</h1>
+              <h2 className="text-gray-500 text-xs">{content.caption}</h2>
             </div>
           </motion.div>
         ))}

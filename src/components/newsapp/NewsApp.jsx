@@ -20,7 +20,7 @@ const NewsApp = () => {
 
   const deleteNews = async (id) => {
     try {
-      await axios.delete(`${process.env.REACT_APP_API}/${id}`);
+      await axios.delete(`https://muhdaffawibi.com/news/${id}`);
       getNews();
     } catch (error) {
       console.log(error);

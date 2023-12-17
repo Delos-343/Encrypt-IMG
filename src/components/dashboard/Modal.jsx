@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { AiOutlineLogin, AiOutlineClose } from 'react-icons/ai';
+import { AiOutlineLogin, AiOutlineClose, AiOutlineLogout } from 'react-icons/ai';
 import { auth } from "../../firebase";
 import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const Modal = () => {
   
   const navigate = useNavigate();
-  
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [notice, setNotice] = useState("");
@@ -47,7 +47,7 @@ const Modal = () => {
       await signOut(auth);
       setIsLoggedIn(false);
       navigate("/dashboard");
-      setIsOpen(false); // Close the modal after logout
+      setIsOpen(false);
     } catch (error) {
       console.error('Error signing out:', error);
     }
@@ -56,7 +56,7 @@ const Modal = () => {
   return (
     <>
       <button onClick={toggleModal} className="fixed bottom-8 right-8 bg-blue-500 text-gray-100 px-4 py-2 rounded">
-        {isOpen ? <AiOutlineClose /> : isLoggedIn ? 'Logout' : <AiOutlineLogin />}
+        {isOpen ? <AiOutlineClose /> : isLoggedIn ? <AiOutlineLogout /> : <AiOutlineLogin />}
       </button>
       <AnimatePresence>
         {isOpen && (
