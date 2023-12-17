@@ -21,7 +21,7 @@ const AddNews = () => {
   const saveNews = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(process.env.REACT_APP_API, {
+      await axios.post('https://muhdaffawibi.com/news', {
         author,
         title,
         caption,
@@ -30,6 +30,9 @@ const AddNews = () => {
       });
 
       navigate("/");
+
+      console.log(process.env.REACT_APP_API);
+
     } catch (error) {
       console.log(error);
     }
