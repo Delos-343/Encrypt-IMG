@@ -1,9 +1,9 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { NewsApp, Hero } from "../components";
 
 const HomePage = () => {
-  
   const [activeTab, setActiveTab] = useState('dashboard');
 
   const handleTabClick = (tab) => {
@@ -35,17 +35,31 @@ const HomePage = () => {
           </li>
         </ul>
       </div>
-      {activeTab === 'news' ? (
-        <div className="flex justify-center">
-          <NewsApp />
-        </div>
-      ) : (
-        activeTab === 'dashboard' && (
-          <div className="flex justify-center h-screen">
-            <Hero />
-          </div>
-        )
-      )}
+      <AnimatePresence>
+        {activeTab === 'news' ? (
+          <motion.div
+            key="news"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="flex justify-center"
+          >
+            <NewsApp />
+          </motion.div>
+        ) : (
+          activeTab === 'dashboard' && (
+            <motion.div
+              key="dashboard"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="flex justify-center h-screen"
+            >
+              <Hero />
+            </motion.div>
+          )
+        )}
+      </AnimatePresence>
     </>
   );
 };

@@ -3,7 +3,6 @@
 import React from 'react';
 import { useScroll, useTransform, motion } from 'framer-motion';
 import { data } from './data';
-import Modal from './Modal';
 
 const ScrollCore = () => {
     
@@ -82,7 +81,6 @@ const Hero = () => {
   return (
     <div className="flex flex-col mb-10">
       <ScrollCore />
-      <Modal />
     </div>
   );
 };
