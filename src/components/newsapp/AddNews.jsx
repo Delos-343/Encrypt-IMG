@@ -6,6 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 const AddNews = () => {
 
+  const navigate = useNavigate();
+
   const [author, setAuthor] = useState("");
 
   const [title, setTitle] = useState("");
@@ -15,8 +17,6 @@ const AddNews = () => {
   const [content, setContent] = useState("");
 
   const [image, setImage] = useState("");
-  
-  const navigate = useNavigate();
 
   const saveNews = async (e) => {
     e.preventDefault();
@@ -29,7 +29,7 @@ const AddNews = () => {
         image,
       });
 
-      navigate("/");
+      navigate("/?tab=news");
 
       console.log(process.env.REACT_APP_API);
 
@@ -132,7 +132,7 @@ const AddNews = () => {
               Save
             </button>
             <Link
-              to={`/`}
+              to={`/?tab=news`}
               className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
             >
               Go Back
