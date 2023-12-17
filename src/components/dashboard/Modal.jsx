@@ -4,7 +4,7 @@ import React from 'react';
 const Modal = () => {
   return (
     <div>
-        Login or Logout
+        Login || Logout
     </div>
   );
 };

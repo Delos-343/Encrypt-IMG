@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
-import { NewsApp, Modal } from "../components";
+import { NewsApp, Hero } from "../components";
 
 const HomePage = () => {
   
@@ -41,8 +41,8 @@ const HomePage = () => {
         </div>
       ) : (
         activeTab === 'dashboard' && (
-          <div className="flex justify-center">
-            <Modal />
+          <div className="flex justify-center h-screen">
+            <Hero />
           </div>
         )
       )}
